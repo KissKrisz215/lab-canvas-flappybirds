@@ -278,4 +278,15 @@ function drawImageRot(img,x,y,width,height,deg){
   // Restore canvas state as saved from above
   ctx.restore();
 }
+
+var update = true;
+
+//Loads the background
+function updateBackground() {
+    loadBackground.animate();
+    requestAnimationFrame(updateBackground); 
+}
+updateBackground();
+flappyBird.falling();
+flappyBird.addFallingPoint();
 };
