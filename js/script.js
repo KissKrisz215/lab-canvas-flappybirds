@@ -114,4 +114,69 @@ class character {
 
   obstacleArray.push(object);
  }
+
+ var continueAnimation = true;
+  let speed = 2;
+  let isCrashed = false;
+
+
+ function renderObstacle(){
+  obstacleArray.forEach((item,index) => {
+    //Checks if the player left the obstacle
+    if(item.x < -50){
+      
+      obstacleArray.splice(index,1)
+    }
+    //If the player has toched the bottom of the screen crashes
+    if(flappyBird.y >= 450){
+      flappyBird.y = 450;
+      crashed();
+    }
+    if(flappyBird.x === item.x){
+      //If the player has the same Y coordinate as the top obstacle
+      if(flappyBird.y < item.topHeight + 10){
+        crashed();
+      }else if(flappyBird.y - 85 > item.topHeight){
+        crashed();
+
+      }
+    }
+    
+   ctx.clearRect(0,0, canvas.width, canvas.height);
+   //If the player crashes it renders the best score and the current score
+   if(isCrashed === true){
+    ctx.fillStyle = 'white';
+    ctx.font = '26px serif';
+    ctx.fillStyle = '#FFDD71';
+    ctx.beginPath();
+    ctx.roundRect(330, 200, 100, 120, 20);
+    ctx.fill();
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = 'white';
+    ctx.fillText(`Score:`,350,230);
+    ctx.fillStyle = '#DA6D1E'
+    ctx.fillText(`${flappyBird.score}`,375,250);
+    ctx.fillStyle = 'white';
+    ctx.fillText(`Best:`,355,280);
+    ctx.fillStyle = '#DA6D1E'
+    ctx.fillText(`${highestScore}`,375,305);
+   }
+   //Else the game continues and the obstacles are drawn
+   ctx.globalCompositeOperation = 'destination-over';
+   ctx.drawImage(item.topImg, item.x, item.y, 50, item.topHeight);
+   ctx.drawImage(item.bottomImg, item.bottomX, item.bottomY, 50, item.bottomHeight);
+   for(let i = 0; i < obstacleArray.length; i++){
+    ctx.drawImage(obstacleArray[i].topImg, obstacleArray[i].x, obstacleArray[i].y, 50, obstacleArray[i].topHeight);
+   ctx.drawImage(obstacleArray[i].bottomImg, obstacleArray[i].bottomX, obstacleArray[i].bottomY, 50, obstacleArray[i].bottomHeight);
+   }
+   //Decrements each obstacles X coodinate to animate obstacles moving
+   item.bottomX -= speed;
+   item.x -= speed;
+  
+  })
+  if(continueAnimation === true){
+    requestAnimationFrame(renderObstacle);
+  }
+  
+}
 };
