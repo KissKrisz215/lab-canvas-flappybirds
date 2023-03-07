@@ -1,4 +1,5 @@
 window.onload = function() {
+  let highestScore = 0;
   document.getElementById("start-button").onclick = function() {
     startGame();
   };
@@ -289,4 +290,5 @@ function updateBackground() {
 updateBackground();
 flappyBird.falling();
 flappyBird.addFallingPoint();
+  }
 };
