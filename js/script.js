@@ -193,4 +193,14 @@ function crashed(){
     }
   },10)
  }
+ setInterval(() => {
+  flappyBird.moves = false;
+}, 3000)
+
+renderObstacle();
+
+addObstacle();
+setInterval(() => {
+  addObstacle();
+}, 1700)
 };
