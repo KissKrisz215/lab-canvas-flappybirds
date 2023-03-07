@@ -48,5 +48,18 @@ class character {
     },15)
  
    }
+   addFallingPoint(){
+    setInterval(() => {
+      this.fallingPoint += 1;
+    },400)
+   }
+   //Checks if item has passed the obstacle & updates the score
+   checkCollision(){
+      obstacleArray.forEach((item) => {
+        if(item.x + 50 === this.x){
+          this.score++;
+        }
+      })
+   }
   }
 };
