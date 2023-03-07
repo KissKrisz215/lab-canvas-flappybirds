@@ -179,4 +179,18 @@ class character {
   }
   
 }
+function crashed(){
+  //Stop the background looping if the player has crashed
+  ctx.clearRect(0,0, 800, 600)
+  loadBackground.speed = 0;
+  loadBackground.x = 800;
+  loadBackground.gameOver = true;
+  isCrashed = true;
+  speed = 0;
+  setInterval(() => {
+    if(flappyBird.y >= 450){
+      flappyBird.y = 449;
+    }
+  },10)
+ }
 };
