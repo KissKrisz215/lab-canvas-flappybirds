@@ -82,4 +82,10 @@ class character {
     })
   }
   }
+  //Checks and updates if the current score is greater than the best score
+ setInterval(() => {
+  if(flappyBird.score > highestScore){
+    highestScore = flappyBird.score;
+  }
+ },10)
 };
