@@ -88,4 +88,30 @@ class character {
     highestScore = flappyBird.score;
   }
  },10)
+
+ function addObstacle(){
+  //Generates random height for the obstacles displayed on top
+  const randomTopHeight = Math.floor(Math.random() * (220 - 140) + 140);
+  if(randomTopHeight <= 180){
+    //Generates random bottom height depending on randomTopHeight
+    this.randomBottomHeight = Math.floor(Math.random() * (185 - 165) + 165);
+  }else if(randomTopHeight > 180){
+   this.randomBottomHeight = Math.floor(Math.random() * (140 - 130) + 165);
+  }
+
+  const object = {
+    x:800,
+     y:0,
+      width:60,
+       topHeight: randomTopHeight,
+        bottomX:800, 
+        bottomY: 500 - this.randomBottomHeight,
+         bottomHeight: this.randomBottomHeight,
+         topImg:obstacleTop,
+         bottomImg:ostacleBottom,
+         countedScore: 0
+        }
+
+  obstacleArray.push(object);
+ }
 };
