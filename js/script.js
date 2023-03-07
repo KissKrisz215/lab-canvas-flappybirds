@@ -39,5 +39,14 @@ class character {
     this.fallingPoint = 0;
     this.bestScore = 0
   }
+  falling(arg){
+    if(arg === false){
+
+    }
+    setInterval(() => {
+      this.y +=2;
+    },15)
+ 
+   }
   }
 };
