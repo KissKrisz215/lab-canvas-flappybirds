@@ -61,5 +61,25 @@ class character {
         }
       })
    }
+   //Moves the character by different Y points on keypress Events
+   moveUp(){
+    document.addEventListener('keypress', (event) => {
+     if(event.keyCode === 32){
+       this.fallingPoint = 0;
+       this.y -= 45;
+       this.moves = true;
+     }
+    })
+    document.addEventListener('click', (event) => {
+     this.y -= 45;
+     this.moves = true;
+     this.fallingPoint = 0;
+    })
+    document.addEventListener('dblclick', (event) => {
+     this.y -= 40;
+     this.moves = true;
+     this.fallingPoint = 0;
+    })
+  }
   }
 };
