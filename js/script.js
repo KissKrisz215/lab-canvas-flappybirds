@@ -203,4 +203,11 @@ addObstacle();
 setInterval(() => {
   addObstacle();
 }, 1700)
+
+
+const flappyBird = new character(50,50);
+ flappyBird.moveUp();
+ setInterval(() => {
+  flappyBird.checkCollision();
+ },20)
 };
