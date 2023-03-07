@@ -210,4 +210,57 @@ const flappyBird = new character(50,50);
  setInterval(() => {
   flappyBird.checkCollision();
  },20)
+
+  //Loads the background
+const loadBackground = {
+  img: img,
+  x: 0,
+  speed: -1.5,
+  character: flappyBird.img,
+
+
+  animate: function(){
+    //Icrements X to animate background image
+    this.x += this.speed;
+    this.x %= canvas.width;
+    ctx.drawImage(this.img, this.x, 0);
+    //Checks if the character is crashed
+    if (this.speed < 0) {
+      ctx.drawImage(this.img, this.x + canvas.width, 0);
+      ctx.fillStyle = 'white';
+      ctx.font = '26px serif';
+      ctx.fillText(`Score: ${flappyBird.score}`,650,35);
+      ctx.globalCompositeOperation = 'source-atop';
+      //Checks if the character is moving
+      if(flappyBird.fallingPoint >= 2){
+        //If not it rotates the character
+        drawScore()
+        drawImageRot(this.character,flappyBird.x, flappyBird.y, 50,50, 90 )
+      }else{ 
+        //If the player is moving it draw the character by default
+        drawScore()
+        ctx.drawImage(this.character, flappyBird.x, flappyBird.y, 50, 50);
+      }
+    } else {
+      //If the character is not crashed
+      ctx.drawImage(this.character, this.x - this.img.width, 0);
+      ctx.globalCompositeOperation = 'source-atop';
+      if(flappyBird.fallingPoint >= 2){
+        //If the character is not moving it rotates the character
+        drawScore()
+        drawImageRot(this.character,flappyBird.x, flappyBird.y, 50,50, 90 )
+      }else{
+        //If the character is moving is displays it by default
+        drawScore()
+        ctx.drawImage(this.character, flappyBird.x, flappyBird.y, 50, 50);
+      }
+    }
+  }
+}
+//Displays the Score on the screen
+function drawScore(){
+  ctx.fillStyle = 'white';
+  ctx.font = '26px serif';
+  ctx.fillText(`Score: ${flappyBird.score}`,650,35);
+}
 };
